@@ -153,6 +153,77 @@
             visibility: visible;
         }
 
+        /* 대형 화면 (1200px 이상) - 더 큰 폰트 적용 */
+        @media (min-width: 1200px) {
+            .hero-section h1 {
+                font-size: 4.5rem !important;
+                line-height: 1.2 !important;
+            }
+            .hero-section p {
+                font-size: 1.5rem !important;
+                line-height: 1.6 !important;
+            }
+            .text-3xl, .text-4xl, .text-5xl {
+                font-size: 3.5rem !important;
+                line-height: 1.2 !important;
+            }
+            .text-base, .text-lg {
+                font-size: 1.25rem !important;
+                line-height: 1.6 !important;
+            }
+            .text-xl, .text-2xl {
+                font-size: 1.75rem !important;
+                line-height: 1.4 !important;
+            }
+            .cta-button {
+                font-size: 1.25rem !important;
+                padding: 1.25rem 3rem !important;
+            }
+        }
+
+        /* PC 화면 (1024px 이상) - 히어로 1줄, p 2줄 최적화 */
+        @media (min-width: 1024px) {
+            .hero-section h1 {
+                font-size: 3.75rem !important;
+                line-height: 1.1 !important;
+                word-spacing: -0.1em !important;
+            }
+            .hero-section p {
+                font-size: 1.3rem !important;
+                line-height: 1.5 !important;
+                max-width: 85% !important;
+            }
+        }
+
+        /* 태블릿 화면 (768px~1023px) - title 2줄, p 3줄 최적화 */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-section h1 {
+                font-size: 2.8rem !important;
+                line-height: 1.25 !important;
+            }
+            .hero-section p {
+                font-size: 1.1rem !important;
+                line-height: 1.55 !important;
+                max-width: 90% !important;
+            }
+            .text-3xl, .text-4xl, .text-5xl {
+                font-size: 2.2rem !important;
+                line-height: 1.3 !important;
+            }
+            .text-base, .text-lg {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+            .text-xl, .text-2xl {
+                font-size: 1.3rem !important;
+                line-height: 1.4 !important;
+            }
+            .cta-button {
+                font-size: 1rem !important;
+                padding: 1rem 2.2rem !important;
+            }
+        }
+
         /* PC 버전 (641px 이상) */
         @media (min-width: 641px) {
             .navbar {
@@ -165,7 +236,7 @@
             }
         }
         
-        /* 모바일 버전 (640px 이하) - 향상된 텍스트 반응형 */
+        /* 모바일 버전 (360px~640px) - title 2줄, p 3줄 최적화 */
         @media (max-width: 640px) {
             .navbar {
                 top: 0;
@@ -184,27 +255,28 @@
                 padding: 0 1rem;
             }
             
-            /* 히어로 섹션 텍스트 개선 */
+            /* 히어로 섹션 텍스트 - title 2줄, p 3줄 최적화 */
             .hero-section h1 {
-                font-size: 2.2rem !important;
-                line-height: 1.3 !important;
+                font-size: 2rem !important;
+                line-height: 1.25 !important;
                 word-break: keep-all;
                 overflow-wrap: break-word;
                 margin-bottom: 1rem;
+                max-width: 95% !important;
             }
             .hero-section p {
-                font-size: 0.95rem !important;
-                line-height: 1.6 !important;
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
                 word-break: keep-all;
                 overflow-wrap: break-word;
-                max-width: 90%;
+                max-width: 95%;
                 margin: 0 auto;
             }
             .hero-section p br {
                 display: inline;
             }
             
-            /* 섹션 제목들 모바일 최적화 */
+            /* 섹션 제목들 - 이전 크기로 복원 */
             .text-3xl, .text-4xl, .text-5xl {
                 font-size: 1.8rem !important;
                 line-height: 1.3 !important;
@@ -213,7 +285,7 @@
                 margin-bottom: 1rem !important;
             }
             
-            /* 본문 텍스트 최적화 */
+            /* 본문 텍스트 - 이전 크기로 복원 */
             .text-base, .text-lg {
                 font-size: 0.9rem !important;
                 line-height: 1.6 !important;
@@ -221,7 +293,7 @@
                 overflow-wrap: break-word;
             }
             
-            /* 카드 내 제목 최적화 */
+            /* 카드 내 제목 - 이전 크기로 복원 */
             .text-xl, .text-2xl {
                 font-size: 1.1rem !important;
                 line-height: 1.4 !important;
@@ -229,7 +301,7 @@
                 overflow-wrap: break-word;
             }
             
-            /* 작은 텍스트 최적화 */
+            /* 작은 텍스트 - 이전 크기로 복원 */
             .text-sm {
                 font-size: 0.8rem !important;
                 line-height: 1.5 !important;
@@ -246,7 +318,7 @@
                 bottom: 1rem;
                 white-space: normal;
                 text-align: center;
-                max-width: 85%;
+                max-width: 90%;
                 line-height: 1.4;
             }
             #back-to-top {
@@ -289,28 +361,38 @@
             
             /* 특정 섹션 텍스트 개별 조정 */
             .hero-section .content h1 {
-                font-size: 2.2rem !important;
-                line-height: 1.25 !important;
-            }
-            
-            .hero-section .content p {
-                font-size: 0.95rem !important;
-                line-height: 1.6 !important;
-                padding: 0 0.5rem;
-            }
-        }
-        
-        /* 매우 작은 화면 (480px 이하) 추가 최적화 */
-        @media (max-width: 480px) {
-            .hero-section h1 {
                 font-size: 2rem !important;
                 line-height: 1.25 !important;
             }
             
-            .hero-section p {
+            .hero-section .content p {
                 font-size: 0.9rem !important;
                 line-height: 1.5 !important;
-                padding: 0 1rem;
+                padding: 0 0.5rem;
+            }
+        }
+        
+        /* 매우 작은 화면 (360px~480px) - 히어로 섹션 특별 최적화 */
+        @media (max-width: 480px) {
+            .hero-section .content {
+                padding: 0 0.5rem !important;
+                max-width: 100% !important;
+            }
+            
+            .hero-section h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.8rem !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            
+            .hero-section p {
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+                padding: 0 0.2rem !important;
+                max-width: 100% !important;
+                margin: 0 auto 1.5rem auto !important;
             }
             
             .text-3xl, .text-4xl, .text-5xl {
@@ -339,7 +421,38 @@
             
             .caption {
                 font-size: 0.7rem;
-                max-width: 90%;
+                max-width: 95%;
+                padding: 0 0.5rem;
+            }
+            
+            .cta-button {
+                font-size: 0.9rem !important;
+                padding: 0.75rem 1.5rem !important;
+            }
+        }
+        
+        /* 360px 정확한 최적화 */
+        @media (max-width: 375px) {
+            .hero-section .content {
+                padding: 0 0.25rem !important;
+            }
+            
+            .hero-section h1 {
+                font-size: 1.6rem !important;
+                line-height: 1.15 !important;
+                letter-spacing: -0.02em !important;
+            }
+            
+            .hero-section p {
+                font-size: 0.8rem !important;
+                line-height: 1.35 !important;
+                padding: 0 !important;
+            }
+            
+            .caption {
+                font-size: 0.65rem;
+                max-width: 98%;
+                padding: 0 0.25rem;
             }
         }
     </style>
@@ -369,11 +482,11 @@
 
         <div class="content max-w-4xl mx-auto fade-in-up">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
-                내 주변 작가와 만나는, 오늘의 한 컷
+                내 주변 작가와 만나는,<br class="md:hidden"> 오늘의 한 컷
             </h1>
             <p class="text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-8">
-                포도는 근처에 있는 작가와 모델을 실시간으로 연결해주는 플랫폼입니다. <br>
-                전문 촬영을 더 가볍고 일상적으로 경험해보세요.
+                포도는 근처에 있는 작가와 모델을<br class="md:hidden"> 실시간으로 연결해주는 플랫폼입니다. <br>
+                전문 촬영을 더 가볍고<br class="md:hidden"> 일상적으로 경험해보세요.
             </p>
             <a href="https://forms.gle/MJH6p2C2odR75bNs9" target="_blank" class="cta-button">
                 사전 등록하기
@@ -381,7 +494,7 @@
         </div>
 
         <p class="caption">
-            💬구글 플레이 스토어에서 25년 12월에 만나요! <br> 아래 궁금하신 내용이 더 있어요👀
+            💬플레이 스토어에서 25년 12월에 만나요! <br> 아래 궁금한 내용이 더 있어요👀
         </p>
     </div>
 
@@ -396,7 +509,7 @@
                 <div class="bg-gray-100 p-8 rounded-2xl shadow-sm text-center fade-in-up">
                     <h3 class="text-xl sm:text-2xl font-semibold mb-4 text-gray-900">예쁜 순간을 남기고 싶지만...</h3>
                     <p class="text-base sm:text-lg text-gray-600">
-                        막상 작가님을 찾으려면 너무 비싸고,<br>
+                        막상 작가님을 찾으려면<br>너무 비싸고,
                         과정은 복잡해요.
                     </p>
                 </div>
@@ -493,7 +606,7 @@
     <section class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in-up">
-                3단계로 원하는 촬영을 빠르게 시작해보세요
+                3단계로 원하는 촬영을<br class="sm:hidden"> 빠르게 시작해보세요
             </h2>
             <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                 <!-- Step 1 Card -->
@@ -534,32 +647,32 @@
     <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in-up">
-                작가와 모델, 원하는 역할로 모두가 성장하는 플랫폼
+                작가와 모델, 원하는 역할로<br class="sm:hidden"> 모두가 성장하는 플랫폼
             </h2>
             <div class="flex flex-col md:flex-row justify-center items-stretch gap-8">
                 <!-- 모델 혜택 카드 -->
                 <div class="bg-gray-100 p-8 rounded-2xl shadow-sm text-center md:w-1/2 flex flex-col items-center fade-in-up" style="transition-delay: 0.2s;">
                     <h3 class="text-2xl font-bold text-gray-900 mb-2">모델</h3>
                     <p class="text-base text-gray-600 mb-8 leading-relaxed">
-                        사진이 필요한 사람들에게 전문적인 촬영을 쉽고 편리하게 제공합니다.
+                        사진이 필요한 사람들에게<br> 전문적인 촬영을 쉽고 편리하게 제공합니다.
                     </p>
                     <div class="flex flex-col gap-6 w-full text-left">
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">더 가볍고 일상적으로</h4>
                             <p class="text-sm text-gray-500">
-                                복잡한 절차 없이, 근처 작가와 편리한 촬영을 경험할 수 있습니다.
+                                복잡한 절차 없이,<br class="sm:hidden">근처 작가와 편리한 촬영을 경험할 수 있습니다.
                             </p>
                         </div>
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">실시간 촬영 매칭</h4>
                             <p class="text-sm text-gray-500">
-                                언제든 원하는 순간에 전문 작가의 촬영 서비스를 경험할 수 있습니다.
+                                언제든 원하는 순간에<br class="sm:hidden">전문 작가의 촬영 서비스를 경험할 수 있습니다.
                             </p>
                         </div>
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">합리적인 가격</h4>
                             <p class="text-sm text-sm text-gray-500">
-                                금손님들의 재능 나눔을 통해, 부담 없는 가격으로 촬영할 수 있습니다.
+                                금손님들의 재능 나눔을 통해,<br class="sm:hidden">부담 없는 가격으로 촬영할 수 있습니다.
                             </p>
                         </div>
                     </div>
@@ -569,25 +682,25 @@
                 <div class="bg-gray-100 p-8 rounded-2xl shadow-sm text-center md:w-1/2 flex flex-col items-center fade-in-up" style="transition-delay: 0.4s;">
                     <h3 class="text-2xl font-bold text-gray-900 mb-2">작가</h3>
                     <p class="text-base text-gray-600 mb-8 leading-relaxed">
-                        작가들에게는 지속적인 촬영 기회와 안정적인 수익 창출의 기회를 제공합니다.
+                        작가들에게는 지속적인 촬영 기회와<br> 안정적인 수익 창출의 기회를 제공합니다.
                     </p>
                     <div class="flex flex-col gap-6 w-full text-left">
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">포트폴리오 확장</h4>
                             <p class="text-sm text-gray-500">
-                                다양한 촬영 경험으로 포트폴리오를 쌓고 실력을 향상시킬 수 있습니다.
+                                다양한 촬영 경험으로 포트폴리오를 쌓고<br class="sm:hidden"> 실력을 향상시킬 수 있습니다.
                             </p>
                         </div>
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">안정적인 수익</h4>
                             <p class="text-sm text-gray-500">
-                                실시간 매칭으로 지속적인 촬영 기회와 안정적인 수익 창출이 가능합니다.
+                                실시간 매칭으로 지속적인 촬영 기회와<br class="sm:hidden"> 안정적인 수익 창출이 가능합니다.
                             </p>
                         </div>
                         <div class="bg-white p-6 rounded-xl shadow-sm">
                             <h4 class="text-lg font-semibold text-gray-800 mb-1">네트워크 기회</h4>
                             <p class="text-sm text-gray-500">
-                                다양한 고객과의 만남으로 인맥을 확장하고 브랜딩할 수 있습니다.
+                                다양한 고객과의 만남으로<br class="sm:hidden"> 인맥을 확장하고 브랜딩할 수 있습니다.
                             </p>
                         </div>
                     </div>
@@ -600,7 +713,7 @@
     <section class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-gray-800 fade-in-up">
-                AI가 평가해주는 나의 사진 점수 테스트
+                AI가 평가해주는<br class="sm:hidden"> 나의 사진 실력📸
             </h2>
             <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed fade-in-up" style="transition-delay: 0.2s;">
                 친구·연인들과 재미있게 할 수 있는<br>
@@ -615,7 +728,7 @@
             </div>
             <p class="text-sm text-gray-500 mt-8 leading-relaxed fade-in-up" style="transition-delay: 1.0s;">
                 이 외에도 투명하고 공정한 촬영 생태계를 만들기 위하여<br class="md:hidden">
-                AI를 활용한 촬영 비용 책정, 포트폴리오 구성, 사진 소장 가치 분석 등<br class="md-hidden">
+                AI를 활용한 촬영 비용·사진 가치 책정, 포트폴리오 구성 등<br class="md-hidden">
                 데이터 기반의 피드백 기능을 연구·개발 중에 있습니다.
             </p>
         </div>
@@ -633,7 +746,7 @@
                 </h2>
                 <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
                     MVP 출시를 앞두고 있습니다.<br>
-                    사전 등록하시면 출시 소식과 특별 혜택을 가장 먼저 받아보실 수 있습니다.
+                    사전 등록하시면 출시 소식과 특별 혜택을<br class="sm:hidden">가장 먼저 받아보실 수 있습니다.
                 </p>
                 <a href="https://forms.gle/MJH6p2C2odR75bNs9" target="_blank" class="inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-purple-600 rounded-full shadow-lg transition-transform transform-gpu hover:scale-105">
                     지금 사전 등록하고 혜택 받기
