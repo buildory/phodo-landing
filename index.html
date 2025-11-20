@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LHJRPB2Q69"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-LHJRPB2Q69");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-528VTQCG");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>PhoDo: 내 주변 실시간 작가 매칭 플랫폼</title>
+    <meta
+      name="description"
+      content="포도(PhoDo)는 내 주변 작가와 모델을 실시간으로 연결해주는 플랫폼입니다. 전문가와 함께 일상 속 특별한 순간을 기록하고, 합리적인 비용으로 인생샷을 남겨보세요."
+    />
+    <link rel="icon" href="favicon.ico" type="image/png" />
+    <meta
+      name="keywords"
+      content="사진, 작가, 포토그래퍼, 스냅사진, 촬영, 모델, 포트폴리오, 즉석사진, 실시간 매칭, 포도, PhoDo, Team.Buildory, 빌도리"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind 커스텀 (색상 정도만) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              phodo: {
+                bg: "#000000",
+                accent: "#7c3aed",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fonts & minimal custom styles -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background-color: #f7f7f7;
+        color: #111827;
+        overflow-x: hidden;
+      }
+
+      /* Scroll animation */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .image-hover-effect {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .image-hover-effect:hover {
+        transform: scale(1.05);
+      }
+
+      /* Back to Top Button */
+      #back-to-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 40;
+      }
+
+      #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Message Box */
+      .message-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #111827;
+        color: #f9fafb;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+        z-index: 50;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .message-box.show {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+
+    <!-- Font Awesome for Instagram icon -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-neutral-50">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-528VTQCG"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Hero Section -->
+    <header
+      class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black text-white"
+      id="top"
+    >
+      <!-- Background Video -->
+      <video
+        id="hero-video"
+        class="absolute inset-0 h-full w-full object-cover z-0"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <!-- 실제 파일은 hero_sec_vdo.mp4 로 두는 걸 기준으로 합니다 -->
+        <source src="hero_sec_vdo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black/45 z-10"></div>
+
+      <!-- GNB (포도 / 포도테스트 / 인스타그램) - fixed 로 상단 고정 -->
+      <nav
+        id="navbar"
+        class="fixed inset-x-0 top-0 z-30 flex items-center justify-between bg-white/95 px-4 py-3 border-b border-gray-200 backdrop-blur-sm sm:px-6"
+      >
+        <!-- 왼쪽: 로고 + 페이지 탭 -->
+        <div class="flex items-center gap-5">
+          <a href="#top" class="flex items-center gap-2">
+            <img
+              src="logo_phodo_character_img.png"
+              alt="PhoDo Logo"
+              class="h-8 w-auto sm:h-9"
+            />
+          </a>
+          <div class="flex items-center gap-3 text-xs sm:text-sm">
+            <!-- 현재 페이지: 포도 -->
+            <a
+              href="#top"
+              class="rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-700 sm:text-sm"
+            >
+              포도
+            </a>
+
+            <!-- 다른 페이지: 포도테스트 (지금은 외부 링크) -->
+            <a
+              href="https://test.phodo.net"
+              target="_blank"
+              class="rounded-full px-3 py-1 text-xs text-gray-500 hover:bg-purple-500/5 hover:text-purple-700 sm:text-sm"
+            >
+              포도테스트
+            </a>
+
+            <!-- 인스타그램 탭 -->
+            <a
+              href="https://instagram.com/phodo_official"
+              target="_blank"
+              class="rounded-full px-3 py-1 text-xs text-gray-500 hover:bg-purple-500/5 hover:text-purple-700 sm:text-sm"
+            >
+              인스타그램
+            </a>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 인스타그램 아이콘 (화이트 헤더에 맞게 다크톤 + 보라 hover) -->
+        <div class="flex flex-1 justify-end">
+          <a
+            href="https://instagram.com/phodo_official"
+            target="_blank"
+            class="text-xl text-gray-700 transition-transform hover:scale-110 hover:text-purple-600 sm:text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Hero content (fixed 헤더 높이만큼 여백 추가) -->
+      <div
+        class="relative z-20 mx-auto max-w-4xl px-4 pt-16 text-center fade-in-up sm:pt-20"
+      >
+        <h1
+          class="mb-4 text-3xl font-bold leading-tight sm:text-4xl md:text-5xl"
+        >
+          내 주변 작가와 만나는,<br class="md:hidden" />
+          오늘의 한 컷
+        </h1>
+        <p
+          class="mb-7 text-sm font-normal leading-relaxed text-gray-100 sm:text-base md:text-lg"
+        >
+          포도는 근처에 있는 작가와 모델을<br class="md:hidden" />
+          실시간으로 연결해주는 플랫폼입니다. <br />
+          전문 촬영을 더 가볍고<br class="md:hidden" />
+          일상적으로 경험해보세요.
+        </p>
+        <a
+          href="https://forms.gle/MJH6p2C2odR75bNs9"
+          target="_blank"
+          class="inline-flex items-center justify-center rounded-full bg-purple-700 px-7 py-2.5 text-sm font-bold text-white shadow-lg transition-colors hover:bg-purple-800 sm:px-8 sm:py-3 sm:text-base"
+        >
+          사전 등록하기
+        </a>
+      </div>
+
+      <!-- Caption -->
+      <p
+        class="pointer-events-none absolute bottom-6 left-1/2 z-20 w-full -translate-x-1/2 px-4 text-center text-[11px] text-white/85 sm:bottom-8 sm:text-xs"
+      >
+        💬벚꽃 필 무렵 만나요! <br />
+        아래 궁금한 내용이 더 있어요👀
+      </p>
+    </header>
+
+    <main>
+      <!-- Intro_sec1 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <h2
+            class="mb-10 text-center text-2xl font-bold text-gray-800 fade-in-up sm:text-3xl lg:text-4xl"
+          >
+            이런 고민을 하고 계신가요?
+          </h2>
+          <div class="grid gap-6 md:grid-cols-3">
+            <!-- Card 1 -->
+            <div
+              class="fade-in-up rounded-2xl bg-gray-100 p-6 text-center shadow-sm"
+            >
+              <h3
+                class="mb-3 text-lg font-semibold text-gray-900 sm:text-xl"
+              >
+                예쁜 순간을 남기고 싶지만...
+              </h3>
+              <p class="text-sm text-gray-600 sm:text-base">
+                막상 작가님을 찾으려면<br />너무 비싸고,
+                과정은 복잡해요.
+              </p>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="fade-in-up rounded-2xl bg-gray-100 p-6 text-center shadow-sm"
+              style="transition-delay: 0.2s"
+            >
+              <h3
+                class="mb-3 text-lg font-semibold text-gray-900 sm:text-xl"
+              >
+                촬영 실력을 키우고 싶은데...
+              </h3>
+              <p class="text-sm text-gray-600 sm:text-base">
+                모델 구하기가<br />
+                하늘의 별 따기에요.
+              </p>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="fade-in-up rounded-2xl bg-gray-100 p-6 text-center shadow-sm"
+              style="transition-delay: 0.4s"
+            >
+              <h3
+                class="mb-3 text-lg font-semibold text-gray-900 sm:text-xl"
+              >
+                여행지나 특별한 날...
+              </h3>
+              <p class="text-sm text-gray-600 sm:text-base">
+                '인생샷'을 남기고 싶은데,<br />
+                부탁할 사람이 없어요.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro_sec2 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row md:space-x-8"
+        >
+          <div
+            class="fade-in-up mb-6 w-full text-center md:mb-0 md:w-1/2 md:text-left"
+          >
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+            >
+              즉흥적 순간, 실시간 매칭
+            </h2>
+            <p class="text-sm leading-relaxed text-gray-600 sm:text-base">
+              앱을 켜고 내 주변 작가를 실시간으로 찾아보세요.<br />
+              예약 과정 없이 즉석 촬영 만남도 가능합니다.
+            </p>
+          </div>
+          <div
+            class="fade-in-up image-hover-effect flex w-full justify-center md:w-1/2"
+            style="transition-delay: 0.2s"
+          >
+            <img
+              src="map_img.png"
+              alt="실시간 매칭 화면"
+              class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- 촬영 비용 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row md:space-x-8"
+        >
+          <div
+            class="order-1 fade-in-up image-hover-effect mb-6 flex w-full justify-center md:mb-0 md:w-1/2"
+          >
+            <img
+              src="list_img.png"
+              alt="촬영 비용 화면"
+              class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+            />
+          </div>
+          <div
+            class="order-2 fade-in-up w-full text-center md:w-1/2 md:text-left"
+            style="transition-delay: 0.2s"
+          >
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+            >
+              촬영 비용은 자유롭게,<br />
+              검색·매칭은 효율적으로
+            </h2>
+            <p class="text-sm leading-relaxed text-gray-600 sm:text-base">
+              복잡한 과정과 제약 없이,<br />
+              딱 맞는 촬영을 바로 시작할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 스마트한 촬영 관리 시스템 섹션 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row md:space-x-8"
+        >
+          <div
+            class="fade-in-up mb-6 w-full text-center md:mb-0 md:w-1/2 md:text-left"
+          >
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+            >
+              스마트한 촬영 관리 시스템
+            </h2>
+            <p class="text-sm leading-relaxed text-gray-600 sm:text-base">
+              진행 상황에 따라 자동 분류되는 촬영 내역에서,<br />
+              다음 스케줄을 미리 확인하고 준비해보세요.
+            </p>
+          </div>
+          <div
+            class="fade-in-up image-hover-effect flex w-full justify-center md:w-1/2"
+            style="transition-delay: 0.2s"
+          >
+            <img
+              src="manage_img.png"
+              alt="촬영 관리 시스템 화면"
+              class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- 소통 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            소통은 바로바로, 편하게
+          </h2>
+          <p
+            class="fade-in-up mb-8 text-sm leading-relaxed text-gray-600 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            복잡한 외부 연락처 교환 없이,<br />
+            앱 내에서 안전하게 모든 채팅을 주고받으세요.
+          </p>
+          <div
+            class="flex flex-col items-center justify-center gap-6 sm:flex-row"
+          >
+            <img
+              src="chat_1_img.png"
+              alt="앱 내 메시지 화면"
+              class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+              style="transition-delay: 0.4s"
+            />
+            <img
+              src="chat_2_img.png"
+              alt="앱 내 메시지 화면"
+              class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+              style="transition-delay: 0.6s"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- 3단계 프로세스 섹션 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-10 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            3단계로 원하는 촬영을<br class="sm:hidden" />
+            빠르게 시작해보세요
+          </h2>
+          <div
+            class="flex flex-col items-center justify-center gap-7 md:flex-row"
+          >
+            <!-- Step 1 Card -->
+            <div
+              class="fade-in-up w-full rounded-2xl bg-gray-100 p-5 text-left shadow-sm md:w-1/3"
+            >
+              <p class="mb-1 text-xs font-semibold text-gray-500">STEP1</p>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">검색</h3>
+              <p class="text-sm text-gray-600">
+                지도에서 내 주변의 작가·모델 찾기🔎
+              </p>
+            </div>
+            <!-- Arrow Icon -->
+            <div
+              class="fade-in-up hidden md:block"
+              style="transition-delay: 0.2s"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.5 12h-11M17.5 12l-4-4m4 4l-4 4"
+                />
+              </svg>
+            </div>
+            <!-- Step 2 Card -->
+            <div
+              class="fade-in-up w-full rounded-2xl bg-gray-100 p-5 text-left shadow-sm md:w-1/3"
+              style="transition-delay: 0.4s"
+            >
+              <p class="mb-1 text-xs font-semibold text-gray-500">STEP2</p>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">지원·제안</h3>
+              <p class="text-sm text-gray-600">
+                프로필로 간단하게 지원하고 제안하기🙋‍♂️
+              </p>
+            </div>
+            <!-- Arrow Icon -->
+            <div
+              class="fade-in-up hidden md:block"
+              style="transition-delay: 0.6s"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.5 12h-11M17.5 12l-4-4m4 4l-4 4"
+                />
+              </svg>
+            </div>
+            <!-- Step 3 Card -->
+            <div
+              class="fade-in-up w-full rounded-2xl bg-gray-100 p-5 text-left shadow-sm md:w-1/3"
+              style="transition-delay: 0.8s"
+            >
+              <p class="mb-1 text-xs font-semibold text-gray-500">STEP3</p>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">촬영</h3>
+              <p class="text-sm text-gray-600">
+                원하는 인생샷과 포트폴리오를 남기기🙌
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 작가와 모델 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-10 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            작가와 모델, 원하는 역할로<br class="sm:hidden" />
+            모두가 성장하는 플랫폼
+          </h2>
+          <div
+            class="flex flex-col items-stretch justify-center gap-8 md:flex-row"
+          >
+            <!-- 모델 혜택 카드 -->
+            <div
+              class="fade-in-up flex w-full flex-col items-center rounded-2xl bg-gray-100 p-7 text-center shadow-sm md:w-1/2"
+              style="transition-delay: 0.2s"
+            >
+              <h3 class="mb-2 text-xl font-bold text-gray-900">모델</h3>
+              <p class="mb-7 text-sm leading-relaxed text-gray-600 sm:text-base">
+                사진이 필요한 사람들에게<br />
+                전문적인 촬영을 쉽고 편리하게 제공합니다.
+              </p>
+              <div class="flex w-full flex-col gap-5 text-left">
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    더 가볍고 일상적으로
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    복잡한 절차 없이,<br class="sm:hidden" />근처 작가와 편리한
+                    촬영을 경험할 수 있습니다.
+                  </p>
+                </div>
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    실시간 촬영 매칭
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    언제든 원하는 순간에<br class="sm:hidden" />전문 작가의 촬영
+                    서비스를 경험할 수 있습니다.
+                  </p>
+                </div>
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    합리적인 가격
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    금손님들의 재능 나눔을 통해,<br class="sm:hidden" />부담 없는
+                    가격으로 촬영할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 작가 혜택 카드 -->
+            <div
+              class="fade-in-up flex w-full flex-col items-center rounded-2xl bg-gray-100 p-7 text-center shadow-sm md:w-1/2"
+              style="transition-delay: 0.4s"
+            >
+              <h3 class="mb-2 text-xl font-bold text-gray-900">작가</h3>
+              <p class="mb-7 text-sm leading-relaxed text-gray-600 sm:text-base">
+                작가들에게는 지속적인 촬영 기회와<br />
+                안정적인 수익 창출의 기회를 제공합니다.
+              </p>
+              <div class="flex w-full flex-col gap-5 text-left">
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    포트폴리오 확장
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    다양한 촬영 경험으로 포트폴리오를 쌓고<br
+                      class="sm:hidden"
+                    />
+                    실력을 향상시킬 수 있습니다.
+                  </p>
+                </div>
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    안정적인 수익
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    실시간 매칭으로 지속적인 촬영 기회와<br
+                      class="sm:hidden"
+                    />
+                    안정적인 수익 창출이 가능합니다.
+                  </p>
+                </div>
+                <div class="rounded-xl bg-white p-5 shadow-sm">
+                  <h4 class="mb-1 text-base font-semibold text-gray-800">
+                    네트워크 기회
+                  </h4>
+                  <p class="text-xs text-gray-500 sm:text-sm">
+                    다양한 고객과의 만남으로<br class="sm:hidden" />
+                    인맥을 확장하고 브랜딩할 수 있습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI 테스트 섹션 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            AI가 평가해주는<br class="sm:hidden" />
+            나의 사진 실력📸
+          </h2>
+          <p
+            class="fade-in-up mb-7 text-sm leading-relaxed text-gray-600 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            친구·연인들과 재미있게 할 수 있는<br />
+            재미있는 AI 테스트가 준비되어 있어요!
+          </p>
+          <a
+            href="https://test.phodo.net"
+            target="_blank"
+            class="fade-in-up mb-9 inline-flex items-center justify-center rounded-full bg-purple-600 px-7 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
+            style="transition-delay: 0.4s"
+          >
+            포도 테스트 바로가기
+          </a>
+          <div
+            class="mb-8 flex flex-col items-center justify-center gap-6 lg:flex-row"
+          >
+            <img
+              src="test_list_img.png"
+              alt="AI 사진 점수 테스트 결과 화면"
+              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
+              style="transition-delay: 0.6s"
+            />
+            <img
+              src="test_animal_result_img.png"
+              alt="두 번째 AI 테스트 이미지"
+              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
+              style="transition-delay: 0.8s"
+            />
+          </div>
+          <p
+            class="fade-in-up mt-6 text-xs leading-relaxed text-gray-500 sm:text-sm"
+            style="transition-delay: 1s"
+          >
+            이 외에도 투명하고 공정한 촬영 생태계를 만들기 위하여<br
+              class="md:hidden"
+            />
+            AI를 활용한 촬영 비용·사진 가치 책정, 포트폴리오 구성 등<br
+              class="md-hidden"
+            />
+            데이터 기반의 피드백 기능을 연구·개발 중에 있습니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2025년 12월, 포도와 함께하세요 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 md:flex-row md:space-x-8"
+        >
+          <div
+            class="fade-in-up image-hover-effect mb-6 flex w-full justify-center md:mb-0 md:w-1/2"
+          >
+            <img
+              src="logo_bgon_img.png"
+              alt="포도 로고"
+              class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-sm"
+            />
+          </div>
+          <div
+            class="fade-in-up w-full text-center md:w-1/2 md:text-left"
+            style="transition-delay: 0.2s"
+          >
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+            >
+              벚꽃 필 무렵 함께해요🌸
+            </h2>
+            <p
+              class="mb-7 text-sm leading-relaxed text-gray-600 sm:text-base"
+            >
+              MVP 출시를 앞두고 있습니다.<br />
+              사전 등록하시면 출시 소식과 특별 혜택을<br
+                class="sm:hidden"
+              />가장 먼저 받아보실 수 있습니다.
+            </p>
+            <a
+              href="https://forms.gle/MJH6p2C2odR75bNs9"
+              target="_blank"
+              class="inline-flex items-center justify-center rounded-full bg-purple-600 px-7 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
+            >
+              지금 사전 등록하고 혜택 받기
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (2번 디자인을 Tailwind 형태로 통합) -->
+    <footer class="bg-white text-gray-400">
+      <div class="mx-auto max-w-5xl px-4 py-12">
+        <div class="border-t border-gray-200 mt-10 pt-10">
+          <!-- 사업자 정보 -->
+          <div class="mb-6 text-xs leading-relaxed md:text-sm">
+            <h3 class="sr-only">사업자 정보</h3>
+            <div>상호명: <span class="text-gray-600">Team.Buildory</span></div>
+            <div>대표자명: <span class="text-gray-600">김정수</span></div>
+            <div>
+              대표메일:
+              <button
+                class="ml-1 cursor-pointer bg-transparent border-none text-gray-400 underline underline-offset-2 hover:text-gray-600"
+                onclick="copyToClipboard('buildory.dev@gmail.com')"
+              >
+                buildory.dev@gmail.com
+              </button>
+            </div>
+            <div>
+              인스타그램:
+              <a
+                href="https://instagram.com/phodo_official"
+                target="_blank"
+                class="ml-1 text-gray-400 underline underline-offset-2 hover:text-gray-600"
+              >
+                phodo_official
+              </a>
+            </div>
+          </div>
+
+          <!-- 하단 영역 -->
+          <div
+            class="flex flex-col gap-4 text-xs md:flex-row md:items-center md:justify-between md:text-sm"
+          >
+            <div class="text-gray-400">
+              © <span id="currentYear"></span> Team.Buildory. All rights
+              reserved.
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-gray-400">
+              <a
+                href="https://recomplete.notion.site/Team-Introduction-235b542c84fa80828c59ec3c8e2af6df?source=copy_link"
+                target="_blank"
+                class="hover:text-gray-600"
+              >
+                팀(빌도리) 소개
+              </a>
+              <span class="hidden text-gray-300 md:inline">|</span>
+              <a
+                href="https://recomplete.notion.site/299b542c84fa80c3b0b3e154578f4e6a?source=copy_link"
+                target="_blank"
+                class="hover:text-gray-600"
+              >
+                개인정보 처리방침
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="rounded-full bg-purple-700 p-2.5 text-white shadow-lg focus:outline-none sm:p-3"
+      aria-label="맨 위로"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 sm:h-6 sm:w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+    </button>
+
+    <!-- Custom Message Box -->
+    <div id="message-box" class="message-box"></div>
+
+    <script>
+      // 전역 변수
+      const messageBox = document.getElementById("message-box");
+      const backToTopBtn = document.getElementById("back-to-top");
+
+      // 메시지 박스 표시
+      function showMessage(text) {
+        messageBox.textContent = text;
+        messageBox.classList.add("show");
+        setTimeout(() => {
+          messageBox.classList.remove("show");
+        }, 2000);
+      }
+
+      // 클립보드 복사
+      function copyToClipboard(text) {
+        const tempInput = document.createElement("textarea");
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand("copy");
+          showMessage("대표메일이 복사되었습니다.");
+        } catch (err) {
+          console.error("Failed to copy text: ", err);
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      // 스크롤 이벤트: Back to Top 버튼 표시/숨김
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("show");
+        } else {
+          backToTopBtn.classList.remove("show");
+        }
+      });
+
+      // Back to Top 버튼 클릭
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Intersection Observer: 스크롤 애니메이션
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      document.querySelectorAll(".fade-in-up").forEach((element) => {
+        observer.observe(element);
+      });
+
+      // 히어로 영상 자동 재생 보조 (일부 브라우저용)
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroVideo = document.getElementById("hero-video");
+        if (heroVideo) {
+          heroVideo.muted = true;
+          const playPromise = heroVideo.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // 자동재생이 막혀도 에러만 무시
+              console.warn("Autoplay was prevented by the browser.");
+            });
+          }
+        }
+      });
+
+      // 푸터 현재 연도
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
