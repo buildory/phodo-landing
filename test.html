@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-LHJRPB2Q69"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-LHJRPB2Q69");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-528VTQCG");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>포도 테스트: AI가 평가해주는 나의 사진 실력</title>
+    <meta
+      name="description"
+      content="포도 테스트는 AI가 당신의 사진을 평가해주는 재미있는 테스트입니다. 친구·연인들과 함께 사진 실력을 확인해보세요!"
+    />
+    <link rel="icon" href="assets/favicons/favicon.ico" type="image/png" />
+    <meta
+      name="keywords"
+      content="포도 테스트, AI 사진 평가, 사진 실력 테스트, 포토그래퍼 테스트, PhoDo Test"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind 커스텀 (색상 정도만) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              phodo: {
+                bg: "#000000",
+                accent: "#7c3aed",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Fonts & minimal custom styles -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background-color: #f7f7f7;
+        color: #111827;
+        overflow-x: hidden;
+      }
+
+      /* Scroll animation */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .image-hover-effect {
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .image-hover-effect:hover {
+        transform: scale(1.05);
+      }
+
+      /* Back to Top Button */
+      #back-to-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 40;
+      }
+
+      #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Message Box */
+      .message-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #111827;
+        color: #f9fafb;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+        z-index: 50;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .message-box.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #ffffff;
+        color: #9ca3af;
+        padding: 48px 16px;
+      }
+
+      .footer-container {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .border-top {
+        border-top: 1px solid #e5e7eb;
+        margin-top: 40px;
+        padding-top: 40px;
+      }
+
+      .business-info {
+        font-size: 12px;
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      @media (min-width: 768px) {
+        .business-info {
+          font-size: 14px;
+        }
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: #4b5563;
+      }
+
+      .copy-btn {
+        margin-left: 4px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #9ca3af;
+        text-decoration: underline;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      .copy-btn:hover {
+        color: #4b5563;
+      }
+    </style>
+
+    <!-- Font Awesome for Instagram icon -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="bg-neutral-50">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-528VTQCG"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Hero Section -->
+    <header
+      class="relative flex min-h-[98vh] w-full flex-col items-center justify-center overflow-hidden"
+      id="top"
+    >
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="assets/images/ui/test-list-pc-screen.png"
+          alt="포도 테스트 PC 화면"
+          class="h-full w-full object-cover"
+        />
+        <!-- Black Overlay -->
+        <div class="absolute inset-0 bg-black/70"></div>
+      </div>
+
+      <!-- GNB (포도 / 포도테스트 / 인스타그램) - fixed 로 상단 고정 -->
+      <nav
+        id="navbar"
+        class="fixed inset-x-0 top-0 z-30 flex items-center justify-between bg-white/95 px-4 py-3 border-b border-gray-200 backdrop-blur-sm sm:px-6"
+      >
+        <!-- 왼쪽: 로고 + 페이지 탭 -->
+        <div class="flex items-center gap-5">
+          <a href="index.html" class="flex items-center gap-2">
+            <img
+              src="assets/images/logos/phodo-charater-logo.png"
+              alt="PhoDo Logo"
+              class="h-8 w-auto sm:h-9"
+            />
+          </a>
+          <div class="flex items-center gap-3 text-xs sm:text-sm">
+            <!-- 다른 페이지: 포도 -->
+            <a
+              href="index.html"
+              class="rounded-full px-3 py-1 text-xs text-gray-500 hover:bg-purple-500/5 hover:text-purple-700 sm:text-sm"
+            >
+              포도
+            </a>
+
+            <!-- 현재 페이지: 포도테스트 -->
+            <a
+              href="#top"
+              class="rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-700 sm:text-sm"
+            >
+              포도테스트
+            </a>
+
+            <!-- 인스타그램 탭 -->
+            <a
+              href="https://instagram.com/phodo_official"
+              target="_blank"
+              class="rounded-full px-3 py-1 text-xs text-gray-500 hover:bg-purple-500/5 hover:text-purple-700 sm:text-sm"
+            >
+              인스타그램
+            </a>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 인스타그램 아이콘 -->
+        <div class="flex flex-1 justify-end">
+          <a
+            href="https://instagram.com/phodo_official"
+            target="_blank"
+            class="text-xl text-gray-700 transition-transform hover:scale-110 hover:text-purple-600 sm:text-2xl"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Hero content -->
+      <div
+        class="relative z-20 mx-auto max-w-4xl px-4 pt-16 text-center fade-in-up sm:pt-20"
+      >
+        <h1
+          class="mb-5 text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl"
+        >
+          <span>포도</span><span class="text-white">테스트</span>
+        </h1>
+        <p
+          class="mb-4 text-base font-bold text-white sm:text-lg md:text-xl"
+        >
+          AI가 평가해주는 나의 사진 실력📸
+        </p>
+        <p
+          class="mb-8 text-sm font-medium leading-relaxed text-white/90 sm:text-base md:text-lg max-w-2xl mx-auto"
+        >
+          친구·연인들과 재미있게 할 수 있는<br class="md:hidden" />
+          재미있는 AI 테스트가 준비되어 있어요!<br />
+          사진을 업로드하면 AI가<br class="md:hidden" />
+          실시간으로 평가해드립니다.
+        </p>
+        <a
+          href="https://test.phodo.net"
+          target="_blank"
+          class="inline-flex items-center justify-center rounded-full bg-purple-700 px-8 py-3 text-base font-bold text-white shadow-lg transition-colors hover:bg-purple-800 sm:px-10 sm:py-4 sm:text-lg"
+        >
+          테스트 시작하기
+        </a>
+      </div>
+
+      <!-- Caption -->
+      <p
+        class="pointer-events-none absolute bottom-6 left-1/2 z-20 w-full -translate-x-1/2 px-4 text-center text-[11px] text-white/85 sm:bottom-8 sm:text-xs"
+      >
+        아래에서 더 많은 정보를 확인해주세요 👇
+      </p>
+    </header>
+
+    <main>
+      <!-- 주요 장점 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-10 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            포도 테스트의 장점
+          </h2>
+          <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+            <!-- 장점 1 -->
+            <div
+              class="fade-in-up rounded-2xl bg-gray-100 p-8 text-center shadow-sm"
+            >
+              <div class="mb-4 text-5xl">📸</div>
+              <h3
+                class="mb-3 text-xl font-semibold text-gray-900 sm:text-2xl"
+              >
+                사진 한 장이면 OK
+              </h3>
+              <p class="text-sm text-gray-600 sm:text-base leading-relaxed">
+                복잡한 절차 없이<br />
+                평가받고 싶은 사진 한 장만 업로드하면<br />
+                즉시 전문적인 평가를 받을 수 있어요
+              </p>
+            </div>
+            <!-- 장점 2 -->
+            <div
+              class="fade-in-up rounded-2xl bg-gray-100 p-8 text-center shadow-sm"
+              style="transition-delay: 0.2s"
+            >
+              <div class="mb-4 text-5xl">🎯</div>
+              <h3
+                class="mb-3 text-xl font-semibold text-gray-900 sm:text-2xl"
+              >
+                5가지 기준으로 정량적 피드백
+              </h3>
+              <p class="text-sm text-gray-600 sm:text-base leading-relaxed">
+                각 테스트마다 전문적인<br />
+                5가지 기준으로 즉각적이고<br />
+                정량적인 피드백을 제공합니다
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 평가 시스템 소개 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <h2
+            class="fade-in-up mb-3 text-center text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            이렇게 평가해요
+          </h2>
+          <p
+            class="fade-in-up mb-10 text-center text-sm leading-relaxed text-gray-600 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            각 테스트마다 전문적인 5가지 기준으로 평가하고,<br />
+            종합 점수와 평가 호칭을 부여해드려요
+          </p>
+          
+          <!-- 평가 프로세스 -->
+          <div class="mb-12 grid gap-6 md:grid-cols-3">
+            <div
+              class="fade-in-up rounded-2xl bg-white p-6 text-center shadow-sm"
+              style="transition-delay: 0.4s"
+            >
+              <div class="mb-2 text-xs font-semibold text-purple-600">STEP 1</div>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">5가지 기준 평가</h3>
+              <p class="text-sm text-gray-600">
+                테스트별로 다른 5가지 전문 기준으로<br />
+                상세 분석합니다
+              </p>
+            </div>
+            <div
+              class="fade-in-up rounded-2xl bg-white p-6 text-center shadow-sm"
+              style="transition-delay: 0.6s"
+            >
+              <div class="mb-2 text-xs font-semibold text-purple-600">STEP 2</div>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">종합 점수 계산</h3>
+              <p class="text-sm text-gray-600">
+                5가지 기준을 종합하여<br />
+                전체 점수를 산출합니다
+              </p>
+            </div>
+            <div
+              class="fade-in-up rounded-2xl bg-white p-6 text-center shadow-sm"
+              style="transition-delay: 0.8s"
+            >
+              <div class="mb-2 text-xs font-semibold text-purple-600">STEP 3</div>
+              <h3 class="mb-2 text-lg font-bold text-gray-800">호칭 부여</h3>
+              <p class="text-sm text-gray-600">
+                점수대에 맞는 전문 호칭과<br />
+                종합 평가를 제공합니다
+              </p>
+            </div>
+          </div>
+
+          <!-- 호칭 예시 -->
+          <div class="fade-in-up rounded-2xl bg-white p-8 shadow-sm" style="transition-delay: 1s">
+            <h3 class="mb-6 text-center text-xl font-bold text-gray-800">
+              점수대별 호칭 예시
+            </h3>
+            <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+              <div class="text-center p-4 rounded-lg bg-purple-50">
+                <div class="text-2xl font-bold text-purple-700 mb-1">96~</div>
+                <div class="text-sm font-semibold text-gray-800">프로</div>
+              </div>
+              <div class="text-center p-4 rounded-lg bg-purple-100">
+                <div class="text-2xl font-bold text-purple-700 mb-1">86~</div>
+                <div class="text-sm font-semibold text-gray-800">전문가</div>
+              </div>
+              <div class="text-center p-4 rounded-lg bg-purple-200">
+                <div class="text-2xl font-bold text-purple-700 mb-1">71~</div>
+                <div class="text-sm font-semibold text-gray-800">아티스트</div>
+              </div>
+              <div class="text-center p-4 rounded-lg bg-gray-100">
+                <div class="text-2xl font-bold text-gray-700 mb-1">51~</div>
+                <div class="text-sm font-semibold text-gray-800">학생</div>
+              </div>
+              <div class="text-center p-4 rounded-lg bg-gray-50">
+                <div class="text-2xl font-bold text-gray-600 mb-1">26~</div>
+                <div class="text-sm font-semibold text-gray-700">초심자</div>
+              </div>
+              <div class="text-center p-4 rounded-lg bg-gray-50">
+                <div class="text-2xl font-bold text-gray-600 mb-1">0~</div>
+                <div class="text-sm font-semibold text-gray-700">입문자</div>
+              </div>
+            </div>
+            <p class="mt-4 text-center text-xs text-gray-500">
+              * 호칭은 테스트별로 다를 수 있습니다
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 테스트 목록 섹션 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <h2
+            class="fade-in-up mb-3 text-center text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            제공하는 테스트 리스트
+          </h2>
+          <p
+            class="fade-in-up mb-10 text-center text-sm leading-relaxed text-gray-600 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            직관적으로 AI 평가를 받고 나 혼자 레벨업하고 싶은 분들을 위한<br />
+            다양한 전문 테스트를 제공합니다
+          </p>
+          
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- 테스트 1: 인생샷 레벨 테스트 -->
+            <a
+              href="https://test.phodo.net/quality"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">📸</span>
+                <h3 class="text-lg font-semibold text-white">인생샷 레벨 테스트</h3>
+              </div>
+              <div class="mb-4 inline-block px-2 py-1 rounded bg-purple-600/20 text-xs font-semibold text-purple-300 w-fit">
+                인물 · 풍경 · 음식 · 동물 · 건축물
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                취미로 찍은 사진, 혹시 작품일지도 몰라요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 사진에 관심 있는 모든 분, 초보·아마추어 사진작가
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 2: 공간 디자인 감각 진단 -->
+            <a
+              href="https://test.phodo.net/space-design"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.1s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">🏠</span>
+                <h3 class="text-lg font-semibold text-white">공간 디자인 감각 진단</h3>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                나의 공간 디자인 감각을 알아보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 방 꾸미기에 관심 있지만 어려움을 겪는 분, 홈 인테리어 콘텐츠 크리에이터
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 3: 클릭 유발 썸네일 진단 -->
+            <a
+              href="https://test.phodo.net/thumbnail"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.2s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">👆</span>
+                <h3 class="text-lg font-semibold text-white">클릭 유발 썸네일 진단</h3>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                시선을 모을 수 있는 썸네일인지 알아보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 유튜버, 블로거, 콘텐츠 크리에이터, 마케터, 개인 사업자
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 4: OOTD 패션 스타일링 -->
+            <a
+              href="https://test.phodo.net/fashion"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.3s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">👗</span>
+                <h3 class="text-lg font-semibold text-white">OOTD 패션 스타일링</h3>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                나의 패션 스타일링 감각을 알아보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 패션에 민감한 모든 분, 일상 룩을 기록하거나 평가받고 싶은 분
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 5: UI/UX 심사위원 -->
+            <a
+              href="https://test.phodo.net/webapp-design"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.4s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">💻</span>
+                <h3 class="text-lg font-semibold text-white">UI/UX 심사위원</h3>
+              </div>
+              <div class="mb-4 inline-block px-2 py-1 rounded bg-purple-600/20 text-xs font-semibold text-purple-300 w-fit">
+                웹 · 앱
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                나의 웹&앱 디자인 감각을 알아보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 디자이너 취업 준비생, 주니어 디자이너, PM, PO, 웹/앱 기획자
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 6: AI 리얼리즘 테스트 -->
+            <a
+              href="https://test.phodo.net/realism"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.5s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">🤖</span>
+                <h3 class="text-lg font-semibold text-white">AI 리얼리즘 테스트</h3>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                생성한 AI 이미지가 얼마나 현실적인지 확인해보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: AI 이미지 생성 도구 사용자, AI 아티스트, AI 기술에 관심 있는 개발자
+                </div>
+              </div>
+            </a>
+
+            <!-- 테스트 7: 구매 유발 상품 촬영 진단 -->
+            <a
+              href="https://test.phodo.net/product-shoot"
+              target="_blank"
+              class="fade-in-up rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 p-6 shadow-lg hover:shadow-xl transition-all hover:scale-105 block flex flex-col"
+              style="transition-delay: 0.6s"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-3xl">🛒</span>
+                <h3 class="text-lg font-semibold text-white">구매 유발 상품 촬영 진단</h3>
+              </div>
+              <p class="text-sm text-white/90 leading-relaxed mb-4 mt-auto">
+                상품 사진이 소비자의 구매욕구를 자극하는지 확인해보세요!
+              </p>
+              <div class="mt-auto pt-3 border-t border-white/10">
+                <div class="text-xs text-purple-300 font-medium">
+                  추천: 이커머스 판매자, 상품 촬영 전문가, 온라인 쇼핑몰 운영자
+                </div>
+              </div>
+            </a>
+          </div>
+          <p
+            class="fade-in-up mt-8 text-sm leading-relaxed text-gray-500 sm:text-base text-center"
+            style="transition-delay: 0.8s"
+          >
+            이 외에도 재미나고 생산성 있는 테스트가 업로드될 예정이예요. 기대해주세요 👀
+          </p>
+        </div>
+      </section>
+
+      <!-- 분석화면 예시 레퍼런스 섹션 -->
+      <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl text-center">
+          <h2
+            class="fade-in-up mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+          >
+            분석화면 예시
+          </h2>
+          <p
+            class="fade-in-up mb-7 text-sm leading-relaxed text-gray-600 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            실제 테스트 결과 화면을 확인해보세요
+          </p>
+          <div
+            class="mb-8 flex flex-col items-center justify-center gap-6 lg:flex-row"
+          >
+            <img
+              src="assets/images/ui/test-list-screen.png"
+              alt="AI 사진 점수 테스트 결과 화면"
+              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
+              style="transition-delay: 0.4s"
+            />
+            <img
+              src="assets/images/ui/test-animal-result.png"
+              alt="두 번째 AI 테스트 이미지"
+              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
+              style="transition-delay: 0.6s"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA 섹션 -->
+      <section class="bg-gradient-to-br from-purple-600 to-purple-800 py-14 px-4 sm:px-6 lg:px-8 text-white">
+        <div class="mx-auto max-w-4xl text-center">
+          <h2
+            class="fade-in-up mb-3 text-2xl font-bold sm:text-3xl lg:text-4xl"
+          >
+            지금 바로 시작해보세요!
+          </h2>
+          <p
+            class="fade-in-up mb-7 text-sm leading-relaxed text-purple-100 sm:text-base"
+            style="transition-delay: 0.2s"
+          >
+            사진 한 장만 업로드하면<br />
+            AI가 전문적인 5가지 기준으로 즉각적이고 정량적인 피드백을 제공합니다.<br />
+            나 혼자 레벨업하고 싶은 분들을 위해 준비했습니다!
+          </p>
+          <a
+            href="https://test.phodo.net"
+            target="_blank"
+            class="fade-in-up inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold text-purple-700 shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
+            style="transition-delay: 0.4s"
+          >
+            테스트 시작하기 →
+          </a>
+        </div>
+      </section>
+
+      <!-- 포도 메인으로 돌아가기 -->
+      <section class="bg-white py-14 px-4 sm:px-6 lg:px-8">
+        <div
+          class="mx-auto flex max-w-7xl flex-col items-center justify-center gap-8 md:flex-row md:space-x-8"
+        >
+          <div
+            class="fade-in-up image-hover-effect mb-6 flex w-full justify-center md:mb-0 md:w-1/2"
+          >
+            <img
+              src="assets/images/logos/phodo-wordmark-logo.png"
+              alt="포도 로고"
+              class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-sm"
+            />
+          </div>
+          <div
+            class="fade-in-up w-full text-center md:w-1/2 md:text-left"
+            style="transition-delay: 0.2s"
+          >
+            <h2
+              class="mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
+            >
+              포도와 함께<br />
+              더 나은 사진을 만들어가요
+            </h2>
+            <p
+              class="mb-7 text-sm leading-relaxed text-gray-600 sm:text-base"
+            >
+              포도는 내 주변 작가와 모델을<br />
+              실시간으로 연결해주는 플랫폼입니다.<br />
+              테스트로 실력을 확인하고,<br />
+              포도에서 실제 촬영을 경험해보세요.
+            </p>
+            <a
+              href="index.html"
+              class="inline-flex items-center justify-center rounded-full bg-purple-600 px-7 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
+            >
+              포도 메인으로 가기
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="border-top">
+          <!-- 사업자 정보 -->
+          <div class="business-info">
+            <h3 style="display:none;">사업자 정보</h3>
+
+            <div>상호명: Team.Buildory</div>
+            <div>대표자명: 김정수</div>
+
+            <div>
+              대표메일:
+              <button class="copy-btn" onclick="copyToClipboard('buildory.dev@gmail.com')">
+                buildory.dev@gmail.com
+              </button>
+            </div>
+
+            <div>
+              인스타그램:
+              <a href="https://instagram.com/phodo_official" target="_blank">phodo_official</a>
+            </div>
+          </div>
+
+          <!-- 아래 영역 -->
+          <div class="footer-bottom">
+            <div class="copy-info">
+              © <span id="currentYear"></span> Team.Buildory. All rights reserved.
+            </div>
+
+            <div class="footer-links">
+              <a href="https://recomplete.notion.site/Team-Introduction-235b542c84fa80828c59ec3c8e2af6df?source=copy_link" target="_blank">
+                팀(빌도리) 소개
+              </a>
+              <span style="color:#d1d5db; margin: 0 8px;">|</span>
+              <a href="https://recomplete.notion.site/299b542c84fa80c3b0b3e154578f4e6a?source=copy_link" target="_blank">
+                개인정보 처리방침
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="rounded-full bg-purple-700 p-2.5 text-white shadow-lg focus:outline-none sm:p-3"
+      aria-label="맨 위로"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 sm:h-6 sm:w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+    </button>
+
+    <!-- Custom Message Box -->
+    <div id="message-box" class="message-box"></div>
+
+    <script>
+      // 전역 변수
+      const messageBox = document.getElementById("message-box");
+      const backToTopBtn = document.getElementById("back-to-top");
+
+      // 메시지 박스 표시
+      function showMessage(text) {
+        messageBox.textContent = text;
+        messageBox.classList.add("show");
+        setTimeout(() => {
+          messageBox.classList.remove("show");
+        }, 2000);
+      }
+
+      // 클립보드 복사
+      function copyToClipboard(text) {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            showMessage("클립보드에 복사되었습니다.");
+          }).catch(() => {
+            // Fallback for older browsers
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+              document.execCommand("copy");
+              showMessage("클립보드에 복사되었습니다.");
+            } catch (err) {
+              console.error("Failed to copy text: ", err);
+            }
+            document.body.removeChild(tempInput);
+          });
+        } else {
+          // Fallback for older browsers
+          const tempInput = document.createElement("textarea");
+          tempInput.value = text;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand("copy");
+            showMessage("클립보드에 복사되었습니다.");
+          } catch (err) {
+            console.error("Failed to copy text: ", err);
+          }
+          document.body.removeChild(tempInput);
+        }
+      }
+
+      // 스크롤 이벤트: Back to Top 버튼 표시/숨김
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("show");
+        } else {
+          backToTopBtn.classList.remove("show");
+        }
+      });
+
+      // Back to Top 버튼 클릭
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Intersection Observer: 스크롤 애니메이션
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      document.querySelectorAll(".fade-in-up").forEach((element) => {
+        observer.observe(element);
+      });
+
+      // 푸터 현재 연도
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
+

@@ -191,7 +191,7 @@
 
       .footer-links a:hover {
         color: #4b5563;
-      }
+            }
 
       .copy-btn {
         margin-left: 4px;
@@ -272,10 +272,9 @@
               포도
             </a>
 
-            <!-- 다른 페이지: 포도테스트 (지금은 외부 링크) -->
+            <!-- 다른 페이지: 포도테스트 -->
             <a
-              href="https://test.phodo.net"
-              target="_blank"
+              href="test.html"
               class="rounded-full px-3 py-1 text-xs text-gray-500 hover:bg-purple-500/5 hover:text-purple-700 sm:text-sm"
             >
               포도테스트
@@ -716,58 +715,29 @@
         </div>
       </section>
 
-      <!-- AI 테스트 섹션 -->
+      <!-- AI 기능 연구개발 섹션 -->
       <section class="bg-gray-50 py-14 px-4 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-7xl text-center">
           <h2
             class="fade-in-up mb-3 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl"
           >
-            AI가 평가해주는<br class="sm:hidden" />
-            나의 사진 실력📸
+            사진 기반 AI 기능을<br class="sm:hidden" /> 선보일 예정이예요
           </h2>
           <p
-            class="fade-in-up mb-7 text-sm leading-relaxed text-gray-600 sm:text-base"
+            class="fade-in-up mb-7 text-sm leading-relaxed text-gray-600 sm:text-base max-w-3xl mx-auto"
             style="transition-delay: 0.2s"
           >
-            친구·연인들과 재미있게 할 수 있는<br />
-            재미있는 AI 테스트가 준비되어 있어요!
+            투명하고 공정한 촬영 생태계를<br class="sm:hidden" /> 만들기 위하여<br />
+            AI를 활용한 촬영 비용·사진 가치 책정,<br class="sm:hidden" /> 포트폴리오 구성 등<br />
+            데이터 기반의 피드백 기능을<br class="sm:hidden" /> 연구·개발 중에 있습니다.
           </p>
           <a
-            href="https://test.phodo.net"
-            target="_blank"
-            class="fade-in-up mb-9 inline-flex items-center justify-center rounded-full bg-purple-600 px-7 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
+            href="test.html"
+            class="fade-in-up inline-flex items-center justify-center rounded-full bg-purple-600 px-7 py-3 text-sm font-bold text-white shadow-lg transition-transform hover:scale-105 sm:px-8 sm:py-4 sm:text-base"
             style="transition-delay: 0.4s"
           >
-            포도 테스트 바로가기
+            포도테스트 설명 보기
           </a>
-          <div
-            class="mb-8 flex flex-col items-center justify-center gap-6 lg:flex-row"
-          >
-            <img
-              src="assets/images/ui/test-list-screen.png"
-              alt="AI 사진 점수 테스트 결과 화면"
-              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
-              style="transition-delay: 0.6s"
-            />
-            <img
-              src="assets/images/ui/test-animal-result.png"
-              alt="두 번째 AI 테스트 이미지"
-              class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
-              style="transition-delay: 0.8s"
-            />
-          </div>
-          <p
-            class="fade-in-up mt-6 text-xs leading-relaxed text-gray-500 sm:text-sm"
-            style="transition-delay: 1s"
-          >
-            이 외에도 투명하고 공정한 촬영 생태계를 만들기 위하여<br
-              class="md:hidden"
-            />
-            AI를 활용한 촬영 비용·사진 가치 책정, 포트폴리오 구성 등<br
-              class="md-hidden"
-            />
-            데이터 기반의 피드백 기능을 연구·개발 중에 있습니다.
-          </p>
         </div>
       </section>
 
@@ -904,17 +874,17 @@
             showMessage("클립보드에 복사되었습니다.");
           }).catch(() => {
             // Fallback for older browsers
-            const tempInput = document.createElement("textarea");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            try {
-              document.execCommand("copy");
+        const tempInput = document.createElement("textarea");
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand("copy");
               showMessage("클립보드에 복사되었습니다.");
-            } catch (err) {
-              console.error("Failed to copy text: ", err);
-            }
-            document.body.removeChild(tempInput);
+        } catch (err) {
+          console.error("Failed to copy text: ", err);
+        }
+        document.body.removeChild(tempInput);
           });
         } else {
           // Fallback for older browsers
