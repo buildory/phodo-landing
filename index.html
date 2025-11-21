@@ -38,6 +38,13 @@
       content="width=device-width, initial-scale=1.0"
     />
 
+    <!-- 리소스 우선순위 최적화 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://kit.fontawesome.com" />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+
     <!-- 기본 메타 -->
     <meta
       name="description"
@@ -55,7 +62,8 @@
     <meta property="og:image" content="https://phodo.net/og-image.png" />
     <meta property="og:url" content="https://phodo.net" />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="assets/favicons/favicon.ico" type="image/png" />
+    <link rel="icon" href="assets/favicons/favicon.ico" type="image/x-icon" />
+    <meta name="theme-color" content="#7c3aed" />
     <meta
       name="keywords"
       content="사진, 작가, 포토그래퍼, 스냅사진, 촬영, 모델, 포트폴리오, 즉석사진, 실시간 매칭, 포도, PhoDo, Team.Buildory, 빌도리"
@@ -81,8 +89,19 @@
     </script>
 
     <!-- Fonts & minimal custom styles -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      />
+    </noscript>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
       body {
         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
@@ -226,6 +245,7 @@
     <script
       src="https://kit.fontawesome.com/a076d05399.js"
       crossorigin="anonymous"
+      defer
     ></script>
   </head>
   <body class="bg-neutral-50">
@@ -253,7 +273,7 @@
         muted
         loop
         playsinline
-        preload="auto"
+        preload="metadata"
       >
         <source src="assets/videos/hero_sec_vdo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
@@ -274,6 +294,9 @@
               src="assets/images/logos/phodo-charater-logo.png"
               alt="PhoDo Logo"
               class="h-8 w-auto sm:h-9"
+              width="32"
+              height="32"
+              loading="eager"
             />
           </a>
           <div class="flex items-center gap-3 text-xs sm:text-sm">
@@ -437,6 +460,9 @@
               src="assets/images/ui/map_img.png"
               alt="실시간 매칭 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+              width="400"
+              height="800"
+              loading="lazy"
             />
           </div>
         </div>
@@ -454,6 +480,9 @@
               src="assets/images/ui/pricing-list-screen.png"
               alt="촬영 비용 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+              width="400"
+              height="800"
+              loading="lazy"
             />
           </div>
           <div
@@ -500,6 +529,9 @@
               src="assets/images/ui/manage-screen.png"
               alt="촬영 관리 시스템 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
+              width="400"
+              height="800"
+              loading="lazy"
             />
           </div>
         </div>
@@ -528,12 +560,18 @@
               alt="앱 내 메시지 화면"
               class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
               style="transition-delay: 0.4s"
+              width="400"
+              height="800"
+              loading="lazy"
             />
             <img
               src="assets/images/ui/chat-screen-2.png"
               alt="앱 내 메시지 화면"
               class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
               style="transition-delay: 0.6s"
+              width="400"
+              height="800"
+              loading="lazy"
             />
           </div>
         </div>
@@ -766,6 +804,9 @@
               src="assets/images/logos/phodo-wordmark-logo.png"
               alt="포도 로고"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-sm"
+              width="400"
+              height="200"
+              loading="lazy"
             />
           </div>
           <div
