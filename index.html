@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
   <head>
     <!-- Google tag (gtag.js) -->
@@ -42,7 +42,7 @@
       name="description"
       content="포도(PhoDo)는 내 주변 작가와 모델을 실시간으로 연결해주는 플랫폼입니다. 전문가와 함께 일상 속 특별한 순간을 기록하고, 합리적인 비용으로 인생샷을 남겨보세요."
     />
-    <link rel="icon" href="favicon.ico" type="image/png" />
+    <link rel="icon" href="assets/favicons/favicon.ico" type="image/png" />
     <meta
       name="keywords"
       content="사진, 작가, 포토그래퍼, 스냅사진, 촬영, 모델, 포트폴리오, 즉석사진, 실시간 매칭, 포도, PhoDo, Team.Buildory, 빌도리"
@@ -137,6 +137,76 @@
         opacity: 1;
         visibility: visible;
       }
+
+      /* Footer Styles */
+      footer {
+        background-color: #ffffff;
+        color: #9ca3af;
+        padding: 48px 16px;
+      }
+
+      .footer-container {
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+
+      .border-top {
+        border-top: 1px solid #e5e7eb;
+        margin-top: 40px;
+        padding-top: 40px;
+      }
+
+      .business-info {
+        font-size: 12px;
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      @media (min-width: 768px) {
+        .business-info {
+          font-size: 14px;
+        }
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: #4b5563;
+      }
+
+      .copy-btn {
+        margin-left: 4px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #9ca3af;
+        text-decoration: underline;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      .copy-btn:hover {
+        color: #4b5563;
+      }
     </style>
 
     <!-- Font Awesome for Instagram icon -->
@@ -172,8 +242,7 @@
         playsinline
         preload="auto"
       >
-        <!-- 실제 파일은 hero_sec_vdo.mp4 로 두는 걸 기준으로 합니다 -->
-        <source src="hero_sec_vdo.mp4" type="video/mp4" />
+        <source src="assets/videos/hero_sec_vdo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -189,7 +258,7 @@
         <div class="flex items-center gap-5">
           <a href="#top" class="flex items-center gap-2">
             <img
-              src="logo_phodo_character_img.png"
+              src="assets/images/logos/phodo-charater-logo.png"
               alt="PhoDo Logo"
               class="h-8 w-auto sm:h-9"
             />
@@ -353,7 +422,7 @@
             style="transition-delay: 0.2s"
           >
             <img
-              src="map_img.png"
+              src="assets/images/ui/map_img.png"
               alt="실시간 매칭 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
             />
@@ -370,7 +439,7 @@
             class="order-1 fade-in-up image-hover-effect mb-6 flex w-full justify-center md:mb-0 md:w-1/2"
           >
             <img
-              src="list_img.png"
+              src="assets/images/ui/pricing-list-screen.png"
               alt="촬영 비용 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
             />
@@ -416,7 +485,7 @@
             style="transition-delay: 0.2s"
           >
             <img
-              src="manage_img.png"
+              src="assets/images/ui/manage-screen.png"
               alt="촬영 관리 시스템 화면"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
             />
@@ -443,13 +512,13 @@
             class="flex flex-col items-center justify-center gap-6 sm:flex-row"
           >
             <img
-              src="chat_1_img.png"
+              src="assets/images/ui/chat-screen-1.png"
               alt="앱 내 메시지 화면"
               class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
               style="transition-delay: 0.4s"
             />
             <img
-              src="chat_2_img.png"
+              src="assets/images/ui/chat-screen-2.png"
               alt="앱 내 메시지 화면"
               class="fade-in-up image-hover-effect w-full max-w-xs rounded-2xl shadow-lg md:max-w-md"
               style="transition-delay: 0.6s"
@@ -675,13 +744,13 @@
             class="mb-8 flex flex-col items-center justify-center gap-6 lg:flex-row"
           >
             <img
-              src="test_list_img.png"
+              src="assets/images/ui/test-list-screen.png"
               alt="AI 사진 점수 테스트 결과 화면"
               class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
               style="transition-delay: 0.6s"
             />
             <img
-              src="test_animal_result_img.png"
+              src="assets/images/ui/test-animal-result.png"
               alt="두 번째 AI 테스트 이미지"
               class="fade-in-up image-hover-effect w-full max-w-sm rounded-2xl shadow-lg"
               style="transition-delay: 0.8s"
@@ -711,7 +780,7 @@
             class="fade-in-up image-hover-effect mb-6 flex w-full justify-center md:mb-0 md:w-1/2"
           >
             <img
-              src="logo_bgon_img.png"
+              src="assets/images/logos/phodo-wordmark-logo.png"
               alt="포도 로고"
               class="w-full max-w-xs rounded-2xl shadow-lg md:max-w-sm"
             />
@@ -745,58 +814,42 @@
       </section>
     </main>
 
-    <!-- Footer (2번 디자인을 Tailwind 형태로 통합) -->
-    <footer class="bg-white text-gray-400">
-      <div class="mx-auto max-w-5xl px-4 py-12">
-        <div class="border-t border-gray-200 mt-10 pt-10">
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="border-top">
           <!-- 사업자 정보 -->
-          <div class="mb-6 text-xs leading-relaxed md:text-sm">
-            <h3 class="sr-only">사업자 정보</h3>
-            <div>상호명: <span class="text-gray-600">Team.Buildory</span></div>
-            <div>대표자명: <span class="text-gray-600">김정수</span></div>
+          <div class="business-info">
+            <h3 style="display:none;">사업자 정보</h3>
+
+            <div>상호명: Team.Buildory</div>
+            <div>대표자명: 김정수</div>
+
             <div>
               대표메일:
-              <button
-                class="ml-1 cursor-pointer bg-transparent border-none text-gray-400 underline underline-offset-2 hover:text-gray-600"
-                onclick="copyToClipboard('buildory.dev@gmail.com')"
-              >
+              <button class="copy-btn" onclick="copyToClipboard('buildory.dev@gmail.com')">
                 buildory.dev@gmail.com
               </button>
             </div>
+
             <div>
               인스타그램:
-              <a
-                href="https://instagram.com/phodo_official"
-                target="_blank"
-                class="ml-1 text-gray-400 underline underline-offset-2 hover:text-gray-600"
-              >
-                phodo_official
-              </a>
+              <a href="https://instagram.com/phodo_official" target="_blank">phodo_official</a>
             </div>
           </div>
 
-          <!-- 하단 영역 -->
-          <div
-            class="flex flex-col gap-4 text-xs md:flex-row md:items-center md:justify-between md:text-sm"
-          >
-            <div class="text-gray-400">
-              © <span id="currentYear"></span> Team.Buildory. All rights
-              reserved.
+          <!-- 아래 영역 -->
+          <div class="footer-bottom">
+            <div class="copy-info">
+              © <span id="currentYear"></span> Team.Buildory. All rights reserved.
             </div>
-            <div class="flex flex-wrap items-center gap-2 text-gray-400">
-              <a
-                href="https://recomplete.notion.site/Team-Introduction-235b542c84fa80828c59ec3c8e2af6df?source=copy_link"
-                target="_blank"
-                class="hover:text-gray-600"
-              >
+
+            <div class="footer-links">
+              <a href="https://recomplete.notion.site/Team-Introduction-235b542c84fa80828c59ec3c8e2af6df?source=copy_link" target="_blank">
                 팀(빌도리) 소개
               </a>
-              <span class="hidden text-gray-300 md:inline">|</span>
-              <a
-                href="https://recomplete.notion.site/299b542c84fa80c3b0b3e154578f4e6a?source=copy_link"
-                target="_blank"
-                class="hover:text-gray-600"
-              >
+              <span style="color:#d1d5db; margin: 0 8px;">|</span>
+              <a href="https://recomplete.notion.site/299b542c84fa80c3b0b3e154578f4e6a?source=copy_link" target="_blank">
                 개인정보 처리방침
               </a>
             </div>
@@ -846,17 +899,37 @@
 
       // 클립보드 복사
       function copyToClipboard(text) {
-        const tempInput = document.createElement("textarea");
-        tempInput.value = text;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        try {
-          document.execCommand("copy");
-          showMessage("대표메일이 복사되었습니다.");
-        } catch (err) {
-          console.error("Failed to copy text: ", err);
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            showMessage("클립보드에 복사되었습니다.");
+          }).catch(() => {
+            // Fallback for older browsers
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+              document.execCommand("copy");
+              showMessage("클립보드에 복사되었습니다.");
+            } catch (err) {
+              console.error("Failed to copy text: ", err);
+            }
+            document.body.removeChild(tempInput);
+          });
+        } else {
+          // Fallback for older browsers
+          const tempInput = document.createElement("textarea");
+          tempInput.value = text;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand("copy");
+            showMessage("클립보드에 복사되었습니다.");
+          } catch (err) {
+            console.error("Failed to copy text: ", err);
+          }
+          document.body.removeChild(tempInput);
         }
-        document.body.removeChild(tempInput);
       }
 
       // 스크롤 이벤트: Back to Top 버튼 표시/숨김
